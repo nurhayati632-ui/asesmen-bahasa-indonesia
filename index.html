@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asesmen Bahasa Indonesia - SMKN 1 Cibatu Purwakarta</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>">
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-dark: #4338ca;
+            --secondary: #7c3aed;
+            --success: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --bg-gradient: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4c1d95 100%);
+            --card-bg: rgba(255, 255, 255, 0.98);
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--bg-gradient);
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border-radius: 24px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.4);
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.3; }
+        }
+        
+        .header-content { position: relative; z-index: 1; }
+        .header h1 { font-size: 1.8rem; font-weight: 800; margin-bottom: 8px; letter-spacing: -0.5px; }
+        .header p { opacity: 0.9; font-size: 0.95rem; font-weight: 500; }
+        .header .badge { display: inline-block; background: rgba(255,255,255,0.2); padding: 6px 16px; border-radius: 20px; font-size: 0.85rem; margin-top: 10px; backdrop-filter: blur(10px); }
+        
+        .content { padding: 30px; }
+        
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; font-weight: 600; color: var(--text-dark); margin-bottom: 8px; font-size: 0.95rem; }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s;
+            background: #f8fafc;
+        }
+        .form-group input:focus, .form-group select:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.15);
+            background: white;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border: none;
+            padding: 16px 36px;
+            border-radius: 12px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+        }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 12px 35px rgba(79, 70, 229, 0.4); }
+        .btn:active { transform: translateY(0); }
+        .btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+        
+        .info-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-radius: 14px;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-left: 4px solid var(--warning);
+        }
+        .info-box h3 { color: #92400e; margin-bottom: 10px; font-size: 1rem; }
+        .info-box ul { margin-left: 18px; color: #78350f; line-height: 1.7; font-size: 0.9rem; }
+        
+        .question-container { display: none; }
+        
+        .student-info-bar {
+            background: linear-gradient(135deg, #ede9fe 0%, #ddd6fe 100%);
+            border-radius: 10px;
+            padding: 12px 16px;
+            margin-bottom: 16px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            font-size: 0.9rem;
+        }
+        .student-info-bar span { font-weight: 600; color: var(--primary-dark); }
+        
+        .timer {
+            background: linear-gradient(135deg, var(--danger) 0%, #dc2626 100%);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-size: 1.3rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 6px 25px rgba(239, 68, 68, 0.3);
+        }
+        .timer.warning { animation: timerPulse 1s ease-in-out infinite; }
+        @keyframes timerPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.02); } }
+        
+        .progress-container { margin-bottom: 20px; }
+        .progress-bar { height: 10px; background: #e2e8f0; border-radius: 8px; overflow: hidden; }
+        .progress-fill { height: 100%; background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%); transition: width 0.4s; border-radius: 8px; }
+        .progress-text { text-align: center; margin-top: 8px; color: var(--text-muted); font-weight: 600; font-size: 0.9rem; }
+        
+        .question-nav-grid { display: grid; grid-template-columns: repeat(10, 1fr); gap: 6px; margin: 20px 0; }
+        .question-nav-btn {
+            aspect-ratio: 1;
+            border: 2px solid #e2e8f0;
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.8rem;
+            font-family: inherit;
+            transition: all 0.2s;
+            color: var(--text-muted);
+        }
+        .question-nav-btn:hover { border-color: var(--primary); color: var(--primary); }
+        .question-nav-btn.answered { background: var(--primary); color: white; border-color: var(--primary); }
+        .question-nav-btn.current { border-color: var(--secondary); box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.3); }
+        
+        .question-card {
+            background: #f8fafc;
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 20px;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .question-meta { margin-bottom: 16px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .question-number { background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); color: white; padding: 6px 14px; border-radius: 20px; font-weight: 700; font-size: 0.85rem; }
+        .question-level { padding: 5px 12px; border-radius: 16px; font-size: 0.75rem; font-weight: 600; }
+        .level-mudah { background: #dcfce7; color: #166534; }
+        .level-sedang { background: #fef3c7; color: #92400e; }
+        .level-hots { background: #fee2e2; color: #991b1b; }
+        
+        .stimulus { background: white; border: 2px solid #e2e8f0; border-radius: 12px; padding: 20px; margin: 16px 0; line-height: 1.8; font-size: 0.95rem; }
+        .stimulus-title { font-weight: 700; color: var(--primary); margin-bottom: 10px; font-size: 0.9rem; }
+        
+        .question-text { font-size: 1.05rem; color: var(--text-dark); margin-bottom: 20px; line-height: 1.6; font-weight: 500; }
+        
+        .options { display: flex; flex-direction: column; gap: 10px; }
+        .option {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 14px 18px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+        }
+        .option:hover { border-color: var(--primary); background: #f5f3ff; transform: translateX(3px); }
+        .option.selected { border-color: var(--primary); background: linear-gradient(135deg, #ede9fe 0%, #ddd6fe 100%); }
+        .option-letter {
+            background: var(--primary);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+            font-size: 0.9rem;
+        }
+        .option.selected .option-letter { background: var(--secondary); }
+        .option-text { flex: 1; line-height: 1.5; padding-top: 4px; font-size: 0.95rem; }
+        
+        .navigation { display: flex; justify-content: space-between; gap: 12px; margin-top: 24px; }
+        .nav-btn { padding: 14px 28px; border-radius: 10px; font-size: 0.95rem; font-weight: 700; font-family: inherit; cursor: pointer; transition: all 0.2s; }
+        .prev-btn { background: white; border: 2px solid var(--primary); color: var(--primary); }
+        .prev-btn:hover { background: var(--primary); color: white; }
+        .next-btn { background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); border: none; color: white; }
+        .next-btn:hover { box-shadow: 0 6px 20px rgba(79, 70, 229, 0.3); }
+        
+        .result-container { display: none; text-align: center; }
+        .result-card {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border-radius: 20px;
+            padding: 40px 30px;
+            margin-bottom: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+        .score-circle {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: white;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+        }
+        .score-number { font-size: 3rem; font-weight: 800; color: var(--primary); line-height: 1; }
+        .score-label { color: var(--text-muted); font-size: 0.85rem; font-weight: 600; }
+        .grade { font-size: 2.2rem; font-weight: 800; margin: 12px 0; }
+        .grade-label { font-size: 1.1rem; opacity: 0.9; font-weight: 500; }
+        
+        .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 24px 0; }
+        .stat-item { background: #f8fafc; border-radius: 14px; padding: 20px; }
+        .stat-number { font-size: 2rem; font-weight: 800; color: var(--primary); }
+        .stat-label { color: var(--text-muted); font-size: 0.85rem; margin-top: 4px; font-weight: 500; }
+        
+        .status-box { padding: 16px; border-radius: 12px; margin: 16px 0; font-size: 0.95rem; }
+        .status-box.success { background: #dcfce7; color: #166534; }
+        .status-box.pending { background: #fef3c7; color: #92400e; }
+        .status-box.error { background: #fee2e2; color: #991b1b; }
+        
+        .review-section { text-align: left; margin-top: 24px; }
+        .review-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 16px; color: var(--text-dark); }
+        .review-item { background: #f8fafc; border-radius: 10px; padding: 14px; margin-bottom: 8px; display: flex; align-items: center; gap: 14px; font-size: 0.9rem; }
+        .review-item.correct { border-left: 4px solid var(--success); }
+        .review-item.wrong { border-left: 4px solid var(--danger); }
+        
+        .warning-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+        .warning-box {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            max-width: 420px;
+            margin: 20px;
+            animation: popIn 0.3s ease;
+        }
+        @keyframes popIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        .warning-icon { font-size: 4rem; margin-bottom: 16px; }
+        .warning-title { font-size: 1.4rem; font-weight: 800; color: var(--danger); margin-bottom: 12px; }
+        .warning-text { color: var(--text-muted); line-height: 1.6; margin-bottom: 20px; font-size: 0.95rem; }
+        .violation-badge { background: #fef3c7; border-radius: 10px; padding: 14px; margin-bottom: 20px; font-weight: 700; color: #92400e; }
+        
+        .loading-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(255,255,255,0.95);
+            z-index: 1001;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .spinner { width: 50px; height: 50px; border: 4px solid #e2e8f0; border-top-color: var(--primary); border-radius: 50%; animation: spin 1s linear infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .loading-text { margin-top: 16px; font-weight: 600; color: var(--text-muted); }
+        
+        .online-badge {
+            position: fixed;
+            top: 16px;
+            right: 16px;
+            background: var(--success);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 16px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+        }
+        .online-dot { width: 6px; height: 6px; background: white; border-radius: 50%; animation: blink 2s infinite; }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+        
+        @media (max-width: 640px) {
+            .header h1 { font-size: 1.4rem; }
+            .header { padding: 30px 20px; }
+            .question-nav-grid { grid-template-columns: repeat(6, 1fr); }
+            .stats { grid-template-columns: 1fr; }
+            .navigation { flex-direction: column; }
+            .nav-btn { width: 100%; }
+            .content { padding: 20px; }
+            .online-badge { top: 10px; right: 10px; font-size: 0.7rem; padding: 5px 10px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="online-badge">
+        <span class="online-dot"></span>
+        Online
+    </div>
+    
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="spinner"></div>
+        <div class="loading-text">Menyimpan hasil asesmen...</div>
+    </div>
+    
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <div style="font-size: 2.5rem; margin-bottom: 10px;">📚</div>
+                <h1>ASESMEN BAHASA INDONESIA</h1>
+                <p>SMKN 1 Cibatu Purwakarta</p>
+                <p>Materi Teks Berita dan Cerpen</p>
+                <div class="badge">Tahun Pelajaran 2025/2026</div>
+            </div>
+        </div>
+        
+        <div class="content">
+            <!-- Login Form -->
+            <div id="loginForm">
+                <div class="info-box">
+                    <h3>⚠️ Petunjuk Pengerjaan</h3>
+                    <ul>
+                        <li>Waktu pengerjaan: <strong>90 menit</strong></li>
+                        <li>Jumlah soal: <strong>30 soal pilihan ganda</strong></li>
+                        <li>Dilarang membuka tab/aplikasi lain</li>
+                        <li>Dilarang screenshot/tangkapan layar</li>
+                        <li>Pelanggaran akan tercatat dan dilaporkan</li>
+                        <li>Pastikan koneksi internet stabil</li>
+                    </ul>
+                </div>
+                
+                <div class="form-group">
+                    <label for="studentName">👤 Nama Lengkap</label>
+                    <input type="text" id="studentName" placeholder="Masukkan nama lengkap Anda" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="studentClass">🏫 Kelas</label>
+                    <select id="studentClass" required>
+                        <option value="">-- Pilih Kelas --</option>
+                        <option value="XI MP 1">XI MP 1</option>
+                        <option value="XI MP 2">XI MP 2</option>
+                        <option value="XI TKR 1">XI TKR 1</option>
+                        <option value="XI TKR 2">XI TKR 2</option>
+                        <option value="XI TM 4">XI TM 4</option>
+                    </select>
+                </div>
+                
+                <button class="btn" onclick="startQuiz()">🚀 Mulai Asesmen</button>
+            </div>
+            
+            <!-- Question Container -->
+            <div class="question-container" id="questionContainer">
+                <div class="student-info-bar" id="studentInfoBar"></div>
+                <div class="timer" id="timer">⏱️ <span id="timerDisplay">90:00</span></div>
+                
+                <div class="progress-container">
+                    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+                    <div class="progress-text" id="progressText">Soal 1 dari 30</div>
+                </div>
+                
+                <div class="question-nav-grid" id="questionNavGrid"></div>
+                <div id="questionArea"></div>
+                
+                <div class="navigation">
+                    <button class="nav-btn prev-btn" onclick="prevQuestion()" id="prevBtn">← Sebelumnya</button>
+                    <button class="nav-btn next-btn" onclick="nextQuestion()" id="nextBtn">Selanjutnya →</button>
+                </div>
+            </div>
+            
+            <!-- Result Container -->
+            <div class="result-container" id="resultContainer">
+                <div class="result-card">
+                    <div class="score-circle">
+                        <div class="score-number" id="scoreNumber">0</div>
+                        <div class="score-label">NILAI</div>
+                    </div>
+                    <div class="grade" id="grade">-</div>
+                    <div class="grade-label" id="gradeLabel">-</div>
+                </div>
+                
+                <div class="stats">
+                    <div class="stat-item"><div class="stat-number" id="correctCount">0</div><div class="stat-label">✅ Benar</div></div>
+                    <div class="stat-item"><div class="stat-number" id="wrongCount">0</div><div class="stat-label">❌ Salah</div></div>
+                    <div class="stat-item"><div class="stat-number" id="violationCountResult">0</div><div class="stat-label">⚠️ Pelanggaran</div></div>
+                </div>
+                
+                <div class="status-box pending" id="statusBox">📤 Mengirim hasil ke server...</div>
+                
+                <div class="review-section" id="reviewSection">
+                    <div class="review-title">📋 Ringkasan Jawaban</div>
+                    <div id="reviewList"></div>
+                </div>
+                
+                <button class="btn" style="margin-top: 20px;" onclick="location.reload()">🏠 Kembali</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Warning Overlay -->
+    <div class="warning-overlay" id="warningOverlay">
+        <div class="warning-box">
+            <div class="warning-icon">⚠️</div>
+            <div class="warning-title">PERINGATAN!</div>
+            <div class="warning-text" id="warningText">Aktivitas tidak diperbolehkan terdeteksi.</div>
+            <div class="violation-badge">Total Pelanggaran: <span id="violationCount">0</span></div>
+            <button class="btn" onclick="closeWarning()">Saya Mengerti</button>
+        </div>
+    </div>
+    
+    <script>
+        // =====================================================
+        // KONFIGURASI GOOGLE APPS SCRIPT
+        // =====================================================
+        // Ganti URL di bawah dengan URL Web App Anda setelah deploy
+        const SCRIPT_URL = 'https://script.google.com/macros/s/GANTI_DENGAN_ID_DEPLOYMENT_ANDA/exec';
+        // =====================================================
+        
+        // 30 Soal Bahasa Indonesia - Teks Berita & Cerpen
+        const questions = [
+            {number:1,level:"Mudah",cognitive:"C1",stimulus:`<div class="stimulus-title">Bacalah kutipan berita berikut!</div><p><strong>FIFGROUP Gelar Program MENYALA 2025 di Purwakarta</strong></p><p>PURWAKARTA - PT Federal International Finance (FIFGROUP) mengadakan program literasi keuangan bertajuk "MENYALA 2025" di Kabupaten Purwakarta, Jawa Barat, pada Senin (25/11/2024). Program ini menargetkan 6.300 guru dan 12.250 siswa SMK se-Indonesia.</p><p>Kegiatan diselenggarakan di Aula SMKN 1 Cibatu Purwakarta dengan dihadiri perwakilan Dinas Pendidikan.</p>`,question:"Kalimat yang termasuk bagian orientasi (pembuka) berita adalah...",options:["Para peserta antusias mengikuti sesi materi","PT Federal International Finance (FIFGROUP) mengadakan program literasi keuangan bertajuk 'MENYALA 2025' di Kabupaten Purwakarta","Kegiatan diselenggarakan di Aula SMKN 1 Cibatu","Program menargetkan 6.300 guru dan 12.250 siswa","Perwakilan Dinas Pendidikan hadir"],answer:1},
+            {number:2,level:"Mudah",cognitive:"C1",question:"Urutan struktur teks berita yang benar adalah...",options:["Body - Lead - Tail","Tail - Lead - Body","Lead - Body - Tail","Lead - Tail - Body","Body - Tail - Lead"],answer:2},
+            {number:3,level:"Mudah",cognitive:"C2",stimulus:`<div class="stimulus-title">Bacalah kutipan berita berikut!</div><p>Kemendikbudristek resmi meluncurkan fitur baru pada platform Merdeka Mengajar yang bertujuan memudahkan guru merancang modul ajar berbasis kurikulum merdeka. Peluncuran dilakukan pada Rabu (20/11/2024) di Jakarta.</p>`,question:"Unsur 'what' (apa) dalam kutipan berita tersebut adalah...",options:["Kemendikbudristek","Peluncuran fitur baru pada platform Merdeka Mengajar","Rabu (20/11/2024)","Di Jakarta","Guru merancang modul ajar"],answer:1},
+            {number:4,level:"Mudah",cognitive:"C2",stimulus:`<div class="stimulus-title">Bacalah kutipan berita berikut!</div><p>Pemkab Purwakarta menggelar Festival Budaya Sunda yang melibatkan seluruh sekolah di wilayah tersebut. Acara berlangsung pada Sabtu, 16 November 2024, di Alun-Alun Purwakarta untuk melestarikan kebudayaan lokal.</p>`,question:"Unsur 'when' (kapan) dalam kutipan berita tersebut adalah...",options:["Alun-Alun Purwakarta","Pemkab Purwakarta","Sabtu, 16 November 2024","Melestarikan kebudayaan lokal","Seluruh sekolah"],answer:2},
+            {number:5,level:"Mudah",cognitive:"C2",stimulus:`<div class="stimulus-title">Bacalah kutipan berita berikut!</div><p>"Program MENYALA 2025 ini sangat bermanfaat bagi siswa SMK untuk mempersiapkan masa depan keuangan mereka," ujar Kepala SMKN 1 Cibatu Purwakarta, Dede, S.Pd., M.Pd.</p>`,question:"Penanda kalimat langsung dalam kutipan berita tersebut adalah...",options:["Kata 'ujar'","Tanda koma setelah nama","Tanda petik dua (\".....\")", "Nama jabatan","Gelar akademik"],answer:2},
+            {number:6,level:"Mudah",cognitive:"C2",stimulus:`<div class="stimulus-title">Bacalah kutipan berita berikut!</div><p>Setelah mengikuti pelatihan selama tiga hari, para guru kemudian diminta mengimplementasikan ilmu yang didapat. Selanjutnya, mereka akan membuat laporan hasil pembelajaran.</p>`,question:"Konjungsi temporal yang terdapat dalam kutipan tersebut adalah...",options:["untuk, kepada, yang","setelah, kemudian, selanjutnya","para, masing-masing, mereka","selama, akan, diminta","bahwa, karena, sehingga"],answer:1},
+            {number:7,level:"Mudah",cognitive:"C2",stimulus:`<div class="stimulus-title">Perhatikan karakteristik berita berikut!</div><p>Berita tentang kecelakaan lalu lintas di jalan tol yang baru terjadi, memuat informasi korban jiwa dan kerugian material, serta harus segera dipublikasikan karena sifatnya aktual.</p>`,question:"Berdasarkan karakteristiknya, berita tersebut termasuk jenis...",options:["Soft news","Feature news","Hard news","Opinion news","Investigation news"],answer:2},
+            {number:8,level:"Mudah",cognitive:"C2",stimulus:`<div class="stimulus-title">Perhatikan pernyataan berikut!</div><ol><li>Program MENYALA 2025 diikuti oleh 6.300 guru se-Indonesia.</li><li>Menurut pengamat, program ini sangat bermanfaat.</li><li>Kegiatan dilaksanakan pada 25 November 2024.</li><li>Sepertinya program ini akan sukses.</li></ol>`,question:"Pernyataan yang termasuk FAKTA adalah...",options:["1 dan 2","2 dan 4","1 dan 3","3 dan 4","2 dan 3"],answer:2},
+            {number:9,level:"Mudah",cognitive:"C2",question:"Fungsi lead (teras berita) dalam sebuah berita adalah...",options:["Menutup berita dengan kesimpulan","Menyajikan detail tambahan","Menyajikan inti berita dan menarik perhatian pembaca","Memberikan komentar narasumber","Menyajikan data statistik"],answer:2},
+            {number:10,level:"Sedang",cognitive:"C4",stimulus:`<div class="stimulus-title">Bacalah kutipan berita berikut!</div><p>Tingkat literasi keuangan siswa SMK masih rendah berdasarkan survei OJK 2023. Dari 1.000 siswa yang disurvei, hanya 35% memahami konsep dasar pengelolaan keuangan. Kondisi ini mendorong berbagai pihak aktif melakukan edukasi.</p>`,question:"Ide pokok kutipan berita tersebut adalah...",options:["Survei OJK 2023 melibatkan 1.000 siswa","Perusahaan pembiayaan aktif edukasi","Rendahnya literasi keuangan siswa SMK mendorong upaya edukasi","35% siswa paham pengelolaan keuangan","Sekolah kejuruan jadi target edukasi"],answer:2},
+            {number:11,level:"Sedang",cognitive:"C3",stimulus:`<div class="stimulus-title">Perhatikan kalimat berikut!</div><ol><li>Para peserta didik siswa sangat antusias mengikuti kegiatan.</li><li>Kepala sekolah memberikan sambutan di aula.</li><li>Program ini bertujuan untuk meningkatkan literasi.</li><li>Kegiatan akan diselenggarakan besok pada hari Senin.</li></ol>`,question:"Kalimat yang TIDAK EFEKTIF adalah...",options:["Kalimat 2 dan 3","Kalimat 1 dan 4","Kalimat 2 dan 4","Kalimat 1 dan 3","Kalimat 3 dan 4"],answer:1},
+            {number:12,level:"Sedang",cognitive:"C3",stimulus:`<div class="stimulus-title">Perhatikan informasi berikut!</div><ul><li>Apa: Pelatihan keterampilan otomotif</li><li>Siapa: 50 siswa jurusan TKR</li><li>Kapan: Selasa, 26 November 2024</li><li>Di mana: Bengkel SMKN 1 Cibatu</li><li>Mengapa: Meningkatkan kompetensi keahlian</li></ul>`,question:"Lead berita yang paling tepat adalah...",options:["Bengkel SMKN 1 Cibatu mengadakan pelatihan.","Sebanyak 50 siswa TKR SMKN 1 Cibatu mengikuti pelatihan keterampilan otomotif di bengkel sekolah pada Selasa (26/11/2024) untuk meningkatkan kompetensi.","Pelatihan keterampilan dilaksanakan di sekolah.","Siswa TKR mendapat pelatihan bermanfaat.","SMKN 1 Cibatu mengadakan kegiatan."],answer:1},
+            {number:13,level:"Sedang",cognitive:"C4",stimulus:`<div class="stimulus-title">Bacalah kutipan berita berikut!</div><p>Dinas Pendidikan Purwakarta mengadakan workshop kurikulum merdeka di Gedung Serbaguna Pemda pada Kamis (21/11/2024). Kegiatan diikuti 200 kepala sekolah dari berbagai jenjang.</p>`,question:"Unsur berita yang TIDAK terdapat dalam kutipan tersebut adalah...",options:["What (apa)","When (kapan)","Where (di mana)","Why (mengapa)","Who (siapa)"],answer:3},
+            {number:14,level:"Sedang",cognitive:"C4",stimulus:`<div class="stimulus-title">Bacalah kutipan berita berikut!</div><p>Andi (17), siswa XI TKR SMKN 1 Cibatu, berhasil meraih juara 1 kompetisi otomotif tingkat provinsi. Prestasi diraihnya berkat ketekunan meski berjuang melawan keterbatasan ekonomi keluarga.</p>`,question:"Sudut pandang (angle) yang digunakan adalah...",options:["Angle dampak","Angle konflik","Angle human interest","Angle kebaruan","Angle prominensi"],answer:2},
+            {number:15,level:"Mudah",cognitive:"C1",stimulus:`<div class="stimulus-title">Bacalah kutipan cerpen "Bengkel dan Beasiswa"!</div><p>Andi menatap tangannya yang penuh oli. Malam sudah larut, tetapi ia masih harus menyelesaikan tugas praktik di bengkel sekolah. Meskipun kelelahan, senyumnya tak pernah pudar.</p><p>"Kamu masih di sini, Di?" tanya Pak Budi, guru pembimbing.</p><p>"Iya, Pak. Sedikit lagi selesai," jawab Andi.</p>`,question:"Tokoh protagonis dalam kutipan cerpen tersebut adalah...",options:["Pak Budi","Guru pembimbing","Andi","Orang tua Andi","Teman Andi"],answer:2},
+            {number:16,level:"Sedang",cognitive:"C2",stimulus:`<div class="stimulus-title">Bacalah kutipan cerpen berikut!</div><p>Aroma oli mesin tercium kuat di ruangan itu. Deretan kendaraan yang sedang diperbaiki berjajar rapi. Suara gerinda sesekali memecah kesunyian malam.</p>`,question:"Latar tempat yang tergambar adalah...",options:["Ruang kelas","Rumah Andi","Bengkel sekolah","Perpustakaan","Kantor guru"],answer:2},
+            {number:17,level:"Sedang",cognitive:"C2",stimulus:`<div class="stimulus-title">Bacalah kutipan cerpen berikut!</div><p>Andi terdiam membatu. Surat yang baru dibacanya seakan membekukan seluruh tubuhnya. Beasiswa yang selama ini diperjuangkan, ditolak karena keterbatasan kuota. Air matanya tak terbendung.</p>`,question:"Kutipan cerpen tersebut termasuk tahapan alur...",options:["Pengenalan (eksposisi)","Konflik (rising action)","Klimaks","Peleraian","Penyelesaian"],answer:2},
+            {number:18,level:"Sedang",cognitive:"C2",stimulus:`<div class="stimulus-title">Bacalah sinopsis cerpen "Bengkel dan Beasiswa"!</div><p>Andi adalah siswa SMK dari keluarga kurang mampu yang bercita-cita menjadi mekanik profesional. Meski harus membantu orang tuanya bekerja, ia tidak pernah menyerah. Kerja kerasnya akhirnya membuahkan hasil ketika ia mendapat beasiswa penuh.</p>`,question:"Tema yang terkandung dalam cerpen tersebut adalah...",options:["Persahabatan sejati","Cinta kasih keluarga","Perjuangan dan kerja keras","Balas dendam","Keserakahan"],answer:2},
+            {number:19,level:"Sedang",cognitive:"C2",stimulus:`<div class="stimulus-title">Bacalah kutipan cerpen berikut!</div><p>Aku menatap langit sore yang mulai memerah. Hatiku gelisah memikirkan hasil pengumuman beasiswa besok. Tanganku masih kotor bekas oli.</p>`,question:"Sudut pandang yang digunakan pengarang adalah...",options:["Orang pertama pelaku utama (aku)","Orang pertama pelaku sampingan","Orang ketiga serba tahu","Orang ketiga terbatas","Orang kedua"],answer:0},
+            {number:20,level:"Sedang",cognitive:"C2",stimulus:`<div class="stimulus-title">Bacalah kutipan cerpen berikut!</div><p>"Andi, kamu sudah membuktikan bahwa keterbatasan bukan penghalang untuk sukses. Semua ini hasil kerja kerasmu sendiri," kata Pak Budi saat menyerahkan sertifikat beasiswa.</p><p>Andi tersenyum. Ia teringat semua malam panjang di bengkel.</p>`,question:"Amanat yang terkandung adalah...",options:["Jangan pernah membantu orang lain","Kesuksesan hanya untuk orang kaya","Kerja keras dan pantang menyerah akan membuahkan hasil","Pendidikan tidak penting","Nasib tidak bisa diubah"],answer:2},
+            {number:21,level:"Sedang",cognitive:"C4",stimulus:`<div class="stimulus-title">Bacalah kutipan cerpen "Burung dalam Sangkar Emas"!</div><p>Sarah memandang keluar jendela mobil mewahnya. Di seberang jalan, ia melihat anak-anak seusianya bermain riang di lapangan berdebu.</p><p>"Tidak boleh bergaul dengan mereka, Nak. Mereka bukan kalangan kita," kata ibunya tegas.</p><p>Sarah hanya mengangguk lemah, meski hatinya memberontak. Ia iri dengan kebebasan anak-anak itu.</p>`,question:"Watak tokoh Sarah adalah...",options:["Sombong dan angkuh","Penurut namun memiliki jiwa yang bebas","Pemberontak dan keras kepala","Acuh tak acuh","Ceria dan mudah bergaul"],answer:1},
+            {number:22,level:"Sedang",cognitive:"C3",stimulus:`<div class="stimulus-title">Bacalah kutipan cerpen berikut!</div><p>Meskipun sudah malam, Andi tetap membantu temannya yang kesulitan memahami materi praktik. Ia tidak peduli rasa lelahnya.</p><p>"Terima kasih, Di. Kamu memang teman yang baik," kata Budi.</p><p>"Sama-sama. Kita ini teman, Bud. Harus saling membantu."</p>`,question:"Nilai moral yang terkandung adalah...",options:["Nilai persaingan","Nilai individualisme","Nilai kesetiakawanan dan tolong-menolong","Nilai materialisme","Nilai persaingan tidak sehat"],answer:2},
+            {number:23,level:"Sedang",cognitive:"C3",stimulus:`<div class="stimulus-title">Bacalah kutipan cerpen berikut!</div><p>Angin malam berbisik lembut di telinganya, seakan memberikan semangat untuk terus berjuang. Bintang-bintang di langit seolah tersenyum menemani malamnya.</p>`,question:"Gaya bahasa yang dominan adalah...",options:["Metafora","Personifikasi","Hiperbola","Simile","Litotes"],answer:1},
+            {number:24,level:"Sedang",cognitive:"C4",question:"Perbedaan mendasar antara teks berita dan cerpen adalah...",options:["Berita bahasa baku, cerpen bahasa tidak baku","Berita bersifat faktual dan objektif, cerpen bersifat imajinatif dan subjektif","Berita tidak memiliki struktur, cerpen memiliki struktur","Berita lebih panjang dari cerpen","Berita tidak memiliki tujuan"],answer:1},
+            {number:25,level:"HOTS",cognitive:"C5",stimulus:`<div class="stimulus-title">Perhatikan dua kutipan berita berikut!</div><p><strong>Berita A:</strong> "Artis terkenal tertangkap kamera makan di restoran mewah mengenakan pakaian branded."</p><p><strong>Berita B:</strong> "Pemerintah mengumumkan kebijakan subsidi pendidikan untuk siswa tidak mampu yang akan membantu 10 juta siswa."</p>`,question:"Berdasarkan nilai kepentingan publik, berita yang lebih layak dipublikasikan adalah...",options:["Berita A, karena artis menarik perhatian","Berita A, karena informasi gaya hidup dibutuhkan","Berita B, karena memiliki dampak signifikan bagi masyarakat luas","Kedua berita sama pentingnya","Kedua berita tidak layak dipublikasikan"],answer:2},
+            {number:26,level:"HOTS",cognitive:"C5",stimulus:`<div class="stimulus-title">Perhatikan dua kutipan berita berikut!</div><p><strong>Berita X:</strong> "Demonstrasi mahasiswa menolak kenaikan UKT berlangsung di depan rektorat, diikuti 500 mahasiswa dan berlangsung damai."</p><p><strong>Berita Y:</strong> "Sekumpulan mahasiswa tidak tahu terima kasih melakukan aksi brutal di kampus dengan tuntutan tidak masuk akal."</p>`,question:"Berita yang lebih objektif beserta alasannya adalah...",options:["Berita X, karena menggunakan kata-kata netral dan menyajikan fakta tanpa opini","Berita Y, karena mengungkapkan kebenaran","Berita X, karena mendukung mahasiswa","Berita Y, karena bahasa tegas","Kedua berita sama objektif"],answer:0},
+            {number:27,level:"HOTS",cognitive:"C4",stimulus:`<div class="stimulus-title">Bacalah kutipan cerpen "Burung dalam Sangkar Emas"!</div><p>Sarah tinggal di rumah megah dengan segala kemewahan. Namun, ia merasa seperti burung terkurung dalam sangkar emas. Indah dipandang, tetapi tidak memiliki kebebasan terbang.</p><p>Suatu hari, ia melihat burung terbang bebas di luar jendela. Air matanya mengalir. "Andai aku bisa sepertimu," bisiknya.</p>`,question:"Keterkaitan judul, latar, dan tokoh yang paling tepat adalah...",options:["Judul menggambarkan hobi Sarah memelihara burung","Sangkar emas adalah simbol kemewahan yang tidak memberi kebahagiaan, Sarah adalah burung yang merindukan kebebasan","Latar rumah megah menunjukkan Sarah orang kaya sombong","Burung adalah hewan peliharaan favorit Sarah","Judul tidak berhubungan dengan isi cerita"],answer:1},
+            {number:28,level:"HOTS",cognitive:"C5",stimulus:`<div class="stimulus-title">Bacalah kutipan cerpen berikut!</div><p>"Tangan yang kotor karena bekerja keras lebih mulia daripada tangan bersih yang tidak pernah berbuat apa-apa," kata ayah Andi suatu malam.</p><p>Andi menatap tangannya yang penuh oli. Kini ia mengerti mengapa ayahnya selalu bangga dengan pekerjaannya.</p>`,question:"Makna tersirat yang ingin disampaikan pengarang adalah...",options:["Bekerja kotor lebih baik dari bekerja bersih","Pekerjaan mekanik adalah paling mulia","Kerja keras dan usaha nyata lebih bernilai daripada sikap pasif tanpa kontribusi","Orang miskin lebih baik dari orang kaya","Kebersihan tidak penting"],answer:2},
+            {number:29,level:"HOTS",cognitive:"C5",stimulus:`<div class="stimulus-title">Bacalah kutipan cerpen berikut!</div><p>Andi adalah anak yang baik. Dia rajin belajar. Dia juga suka membantu orang tua. Suatu hari, Andi mendapat beasiswa. Dia sangat senang. Orang tuanya juga senang. Guru-gurunya juga senang.</p>`,question:"Kelemahan unsur intrinsik dalam kutipan cerpen tersebut adalah...",options:["Tema cerita terlalu berat","Alur terlalu panjang membingungkan","Pengembangan konflik dan gaya bahasa yang datar serta kurang variatif","Latar tempat tidak jelas","Tokoh terlalu banyak"],answer:2},
+            {number:30,level:"HOTS",cognitive:"C6",stimulus:`<div class="stimulus-title">Perhatikan ringkasan berita berikut!</div><p>SMKN 1 Cibatu Purwakarta berhasil mencetak prestasi gemilang dengan meraih juara umum dalam Lomba Kompetensi Siswa (LKS) tingkat Provinsi Jawa Barat. Sekolah ini mengirimkan 15 siswa dan berhasil membawa pulang 5 medali emas, 7 perak, dan 3 perunggu.</p>`,question:"Judul berita yang paling efektif, informatif, dan menarik adalah...",options:["Siswa SMK Menang Lomba","SMKN 1 Cibatu Juara LKS","SMKN 1 Cibatu Purwakarta Raih Juara Umum LKS Jabar, Boyong 15 Medali","Lomba Kompetensi Siswa Digelar","Sekolah Berprestasi di Provinsi"],answer:2}
+        ];
+
+        // Global Variables
+        let currentQuestion = 0;
+        let answers = new Array(questions.length).fill(null);
+        let studentName = '', studentClass = '';
+        let timerInterval, timeLeft = 90 * 60;
+        let violationCount = 0, tabSwitchCount = 0, screenshotAttempts = 0;
+        let quizStarted = false;
+
+        // Quiz Functions
+        function startQuiz() {
+            studentName = document.getElementById('studentName').value.trim();
+            studentClass = document.getElementById('studentClass').value;
+            if (!studentName) { alert('Mohon masukkan nama lengkap!'); return; }
+            if (!studentClass) { alert('Mohon pilih kelas!'); return; }
+            
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('questionContainer').style.display = 'block';
+            document.getElementById('studentInfoBar').innerHTML = `<span>👤 ${studentName}</span><span>🏫 ${studentClass}</span>`;
+            
+            quizStarted = true;
+            initNav();
+            showQuestion(0);
+            startTimer();
+            setupSecurity();
+        }
+
+        function initNav() {
+            const grid = document.getElementById('questionNavGrid');
+            grid.innerHTML = '';
+            for (let i = 0; i < questions.length; i++) {
+                const btn = document.createElement('button');
+                btn.className = 'question-nav-btn';
+                btn.textContent = i + 1;
+                btn.onclick = () => showQuestion(i);
+                grid.appendChild(btn);
+            }
+            updateNav();
+        }
+
+        function updateNav() {
+            document.querySelectorAll('.question-nav-btn').forEach((btn, i) => {
+                btn.classList.remove('current', 'answered');
+                if (i === currentQuestion) btn.classList.add('current');
+                if (answers[i] !== null) btn.classList.add('answered');
+            });
+        }
+
+        function showQuestion(i) {
+            currentQuestion = i;
+            const q = questions[i];
+            const levelClass = q.level === 'Sedang' ? 'level-sedang' : (q.level === 'HOTS' ? 'level-hots' : 'level-mudah');
+            const letters = ['A', 'B', 'C', 'D', 'E'];
+            
+            let html = `<div class="question-card">
+                <div class="question-meta">
+                    <span class="question-number">Soal ${q.number}</span>
+                    <span class="question-level ${levelClass}">${q.cognitive} - ${q.level}</span>
+                </div>
+                ${q.stimulus ? `<div class="stimulus">${q.stimulus}</div>` : ''}
+                <div class="question-text">${q.question}</div>
+                <div class="options">`;
+            
+            q.options.forEach((opt, j) => {
+                html += `<div class="option ${answers[i] === j ? 'selected' : ''}" onclick="selectOption(${j})">
+                    <div class="option-letter">${letters[j]}</div>
+                    <div class="option-text">${opt}</div>
+                </div>`;
+            });
+            html += '</div></div>';
+            
+            document.getElementById('questionArea').innerHTML = html;
+            document.getElementById('progressFill').style.width = ((i + 1) / questions.length * 100) + '%';
+            document.getElementById('progressText').textContent = `Soal ${i + 1} dari ${questions.length}`;
+            document.getElementById('prevBtn').style.visibility = i === 0 ? 'hidden' : 'visible';
+            document.getElementById('nextBtn').textContent = i === questions.length - 1 ? '✓ Selesai' : 'Selanjutnya →';
+            updateNav();
+        }
+
+        function selectOption(j) { answers[currentQuestion] = j; showQuestion(currentQuestion); }
+        function prevQuestion() { if (currentQuestion > 0) showQuestion(currentQuestion - 1); }
+        function nextQuestion() { if (currentQuestion < questions.length - 1) showQuestion(currentQuestion + 1); else finishQuiz(); }
+
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                document.getElementById('timerDisplay').textContent = `${Math.floor(timeLeft/60).toString().padStart(2,'0')}:${(timeLeft%60).toString().padStart(2,'0')}`;
+                if (timeLeft <= 0) { clearInterval(timerInterval); alert('Waktu habis!'); finishQuiz(); }
+                if (timeLeft <= 300) document.getElementById('timer').classList.add('warning');
+            }, 1000);
+        }
+
+        function setupSecurity() {
+            document.addEventListener('visibilitychange', () => { if (quizStarted && document.hidden) { tabSwitchCount++; violationCount++; showWarning('Anda membuka tab lain!'); } });
+            window.addEventListener('blur', () => { if (quizStarted) { tabSwitchCount++; violationCount++; showWarning('Anda meninggalkan halaman!'); } });
+            document.addEventListener('keydown', (e) => {
+                if (quizStarted) {
+                    if (e.key === 'PrintScreen' || (e.ctrlKey && e.shiftKey && e.key === 'S') || (e.metaKey && e.shiftKey && ['3','4','5'].includes(e.key))) { e.preventDefault(); screenshotAttempts++; violationCount++; showWarning('Screenshot tidak diperbolehkan!'); }
+                    if ((e.ctrlKey && e.key === 'p') || e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I')) { e.preventDefault(); violationCount++; showWarning('Aksi tidak diperbolehkan!'); }
+                }
+            });
+            document.addEventListener('contextmenu', (e) => { if (quizStarted) { e.preventDefault(); violationCount++; showWarning('Klik kanan dinonaktifkan!'); } });
+            document.addEventListener('copy', (e) => { if (quizStarted) { e.preventDefault(); violationCount++; showWarning('Copy tidak diperbolehkan!'); } });
+        }
+
+        function showWarning(msg) { document.getElementById('warningText').textContent = msg; document.getElementById('violationCount').textContent = violationCount; document.getElementById('warningOverlay').style.display = 'flex'; }
+        function closeWarning() { document.getElementById('warningOverlay').style.display = 'none'; }
+
+        async function finishQuiz() {
+            const unanswered = answers.filter(a => a === null).length;
+            if (unanswered > 0 && !confirm(`Masih ada ${unanswered} soal belum dijawab. Yakin selesai?`)) return;
+            if (unanswered === 0 && !confirm('Yakin mengumpulkan jawaban?')) return;
+            
+            clearInterval(timerInterval);
+            quizStarted = false;
+            
+            let correct = 0;
+            answers.forEach((a, i) => { if (a === questions[i].answer) correct++; });
+            const score = Math.round((correct / questions.length) * 100);
+            const wrong = questions.length - correct;
+            
+            let grade, gradeLabel;
+            if (score >= 90) { grade = 'A'; gradeLabel = 'Sangat Baik'; }
+            else if (score >= 80) { grade = 'B'; gradeLabel = 'Baik'; }
+            else if (score >= 70) { grade = 'C'; gradeLabel = 'Cukup'; }
+            else if (score >= 60) { grade = 'D'; gradeLabel = 'Kurang'; }
+            else { grade = 'E'; gradeLabel = 'Sangat Kurang'; }
+            
+            const timeUsed = 90 * 60 - timeLeft;
+            const waktu = `${Math.floor(timeUsed/60)}:${(timeUsed%60).toString().padStart(2,'0')}`;
+            
+            // Display results
+            document.getElementById('questionContainer').style.display = 'none';
+            document.getElementById('resultContainer').style.display = 'block';
+            document.getElementById('scoreNumber').textContent = score;
+            document.getElementById('grade').textContent = grade;
+            document.getElementById('gradeLabel').textContent = gradeLabel;
+            document.getElementById('correctCount').textContent = correct;
+            document.getElementById('wrongCount').textContent = wrong;
+            document.getElementById('violationCountResult').textContent = violationCount;
+            
+            // Render review
+            const reviewList = document.getElementById('reviewList');
+            reviewList.innerHTML = '';
+            const letters = ['A','B','C','D','E'];
+            questions.forEach((q, i) => {
+                const item = document.createElement('div');
+                item.className = `review-item ${answers[i] === q.answer ? 'correct' : 'wrong'}`;
+                item.innerHTML = `<span style="font-size:1.3rem">${answers[i] === q.answer ? '✅' : '❌'}</span><div><strong>Soal ${q.number}</strong><br><small>Jawaban: ${answers[i] !== null ? letters[answers[i]] : '-'} | Kunci: ${letters[q.answer]}</small></div>`;
+                reviewList.appendChild(item);
+            });
+            
+            // Send to server
+            await sendToServer({
+                nama: studentName,
+                kelas: studentClass,
+                nilai: score,
+                predikat: `${grade} (${gradeLabel})`,
+                benar: correct,
+                salah: wrong,
+                pelanggaran: violationCount,
+                tabSwitch: tabSwitchCount,
+                screenshot: screenshotAttempts,
+                waktuPengerjaan: waktu
+            });
+        }
+
+        async function sendToServer(data) {
+            const statusBox = document.getElementById('statusBox');
+            document.getElementById('loadingOverlay').style.display = 'flex';
+            
+            try {
+                await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                
+                document.getElementById('loadingOverlay').style.display = 'none';
+                statusBox.className = 'status-box success';
+                statusBox.innerHTML = '✅ Hasil berhasil disimpan ke Google Sheets guru!';
+            } catch (error) {
+                document.getElementById('loadingOverlay').style.display = 'none';
+                statusBox.className = 'status-box error';
+                statusBox.innerHTML = '⚠️ Gagal mengirim. Data tersimpan lokal.';
+                localStorage.setItem('asesmenBackup', JSON.stringify([...(JSON.parse(localStorage.getItem('asesmenBackup')||'[]')), {...data, timestamp: new Date().toISOString()}]));
+            }
+        }
+
+        history.pushState(null, null, location.href);
+        window.onpopstate = () => { if (quizStarted) { history.go(1); showWarning('Tombol back dinonaktifkan!'); } };
+    </script>
+</body>
+</html>
